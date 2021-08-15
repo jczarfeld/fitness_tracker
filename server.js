@@ -1,7 +1,8 @@
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-const controllers = require("./controllers/view.js");
+const viewCont = require("./controllers/view");
+const apiCont = require("./controllers/api");
 
 const PORT = process.env.PORT || 3000;
 
@@ -21,7 +22,8 @@ mongoose.connect("mongodb://localhost/workout", {
     useUnifiedTopology: true
 });
 
-app.use(controllers);
+app.use(apiCont);
+app.use(viewCont);
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}!`);
